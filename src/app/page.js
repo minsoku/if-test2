@@ -10,6 +10,7 @@ export default function Home() {
   }
 
   const sendMessage = () => {
+    console.log('1')
     const iframe = document.getElementById('ifid');
     iframe.contentWindow.postMessage('부모한테 보냄', 'https://www.minsoku.shop');
   };
