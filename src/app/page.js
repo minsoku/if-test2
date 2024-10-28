@@ -17,13 +17,13 @@ export default function Home() {
     <div className={styles.page}>
       iframe 페이지
       <button onClick={sendMessage}>부모야</button>
+      <div style={{ padding: '20px' }} />
       <iframe
         id="ifid"
-        src="https://minsoku.shop"
+        src="https://www.minsoku.shop"
         width="100%"
         height="500"
         allowFullScreen
-        border='none'
       />
       <button onClick={() => getCookie()}>쿠키 쿠키</button>
     </div>
