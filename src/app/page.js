@@ -1,10 +1,12 @@
-"use client";
+"use client"
 
 import Image from "next/image";
 import styles from "./page.module.css";
 
 export default function Home() {
-  console.log('iframe페이지', document.cookie);
+  const getCookie = () => {
+    console.log(document.cookie);
+  }
   return (
     <div className={styles.page}>
       iframe 페이지
@@ -15,6 +17,7 @@ export default function Home() {
         height="500"
         allowFullScreen
       />
+      <button onClick={() => getCookie()}>쿠키 쿠키</button>
     </div>
   );
 }
