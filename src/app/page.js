@@ -1,13 +1,14 @@
 "use client"
 
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import styles from "./page.module.css";
 
 export default function Home() {
+  const iframeRef = useRef(null);
+
   const sendMessage = () => {
-    const iframe = document.getElementById('ifid');
-    if (iframe && iframe.contentWindow) {
-      iframe.contentWindow.postMessage('부모한테 보냄', 'https://www.minsoku.shop');
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      iframeRef.current.contentWindow.postMessage('부모한테 보냄', 'https://www.minsoku.shop');
     }
   };
 
@@ -17,11 +18,12 @@ export default function Home() {
       <button onClick={sendMessage}>부모야</button>
       <div style={{ padding: '20px' }} />
       <iframe
-        id="ifid"
+        ref={iframeRef}
         src="https://www.minsoku.shop"
         width="100%"
         height="500"
         allowFullScreen
+        onLoad={() => console.log('iframe 로드 완료')}
       />
     </div>
   );
