@@ -49,7 +49,7 @@ export default function Home() {
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
         allowFullScreen
         onLoad={() => console.log('iframe 로드 완료')}
-        style={{ border: 'none' }}
+        style={{ border: 'none', height: '100vh' }}
       />
     </div>
   );
