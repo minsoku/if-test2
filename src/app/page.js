@@ -8,7 +8,7 @@ export default function Home() {
 
   useEffect(() => {
     const receiveMessage = (event) => {
-      console.log('자식: 부모한테 메시지 받음', event);
+      console.log('(자식) : ', event);
     };
   
     window.addEventListener('message', receiveMessage);
@@ -25,9 +25,9 @@ export default function Home() {
         type: 'TEST_MESSAGE',
         data: '난 자식이야'
       }, 'https://www.minsoku.shop');
-      console.log('완료');
+      console.log('(자식) : 완료');
     } catch (error) {
-      console.error('실패:', error);
+      console.error('(자식) : 실패:', error);
     }
   };
 
