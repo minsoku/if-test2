@@ -9,7 +9,10 @@ export default function Home() {
   const sendMessage = () => {
     console.log('부모야');
     try {
-      window.parent.postMessage('난 자식이야', '*');
+      window.parent.postMessage({
+        type: 'TEST_MESSAGE',
+        data: '난 자식이야'
+      }, '*');
       console.log('완료');
     } catch (error) {
       console.error('실패:', error);
