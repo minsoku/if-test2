@@ -1,9 +1,9 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react';
-// import styles from "./page.module.css";
+import styles from "./page.module.css";
 
-export default function Home() {seState('default');
+export default function Home() {
   const [pMessage, setPMessage] = useState('');
 
   const setCookie = () => {
@@ -52,7 +52,7 @@ export default function Home() {seState('default');
       <input placeholder='부모님에게 하고 싶은 말' onChange={event => setPMessage(event.target.value)}  />
       <button onClick={sendMessageToChild}>부모님께 메시지</button>
       <div style={{ padding: '5px' }} />
-      <div>부모님께서 보내주신 메시지 : {message}</div>
+      <div>부모님께서 보내주신 메시지 : {pMessage}</div>
       <button onClick={setCookie}>쿠키 설정</button>
       <button onClick={handleGetCookie}>쿠키 읽기</button>
       <button onClick={deleteCookie}>쿠키 삭제</button>
