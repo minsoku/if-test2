@@ -5,12 +5,14 @@ import styles from "./page.module.css";
 
 export default function Home() {
   const iframeRef = useRef(null);
-
+  const [message, setMessage] = useState('');
+  const [pMessage, setPMessage] = useState('');
   useEffect(() => {
     const receiveMessage = (event) => {
-      console.log('(부모) : ', event);
+      if (event.origin === "https://www.minsoku.shop") {
+        setMessage(event.data.data);
+      }
     };
-  
     window.addEventListener('message', receiveMessage);
   
     return () => {
@@ -23,7 +25,7 @@ export default function Home() {
     try {
       iframeRef.current.contentWindow.postMessage({
         type: 'PARENT_MESSAGE',
-        data: '사실 내가 부모네'
+        data: pMessage
       }, 'https://www.minsoku.shop');
       console.log('(부모) : 완료');
     } catch (error) {
@@ -34,13 +36,16 @@ export default function Home() {
   return (
     <div className={styles.page}>
       여기가 부모페이지임
-      <button onClick={sendMessage}>부모야</button>
-      <div style={{ padding: '20px' }} />
+      <input placeholder='자식에게 하고 싶은 말' onChange={event => setPMessage(event.target.value)}  />
+      <button onClick={sendMessage}>자식에게 하고 싶은 말</button>
+      <div style={{ padding: '5px' }} />
+      <div>자식이 보낸 말{message}</div>
+      <div style={{ padding: '5px' }} />
       <iframe
         ref={iframeRef}
         src="https://www.minsoku.shop"
         width="100%"
-        height="500"
+        height="100%"
         sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
         allowFullScreen
         onLoad={() => console.log('iframe 로드 완료')}
