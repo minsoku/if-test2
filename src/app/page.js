@@ -8,32 +8,32 @@ export default function Home() {
 
   useEffect(() => {
     const receiveMessage = (event) => {
-      console.log('(자식) : ', event);
+      console.log('(부모) : ', event);
     };
   
     window.addEventListener('message', receiveMessage);
   
     return () => {
+      console.log('(부모) : unMount');
       window.removeEventListener('message', receiveMessage);
     };
   }, []);
 
   const sendMessage = () => {
-    console.log('부모야');
     try {
       iframeRef.current.contentWindow.postMessage({
-        type: 'TEST_MESSAGE',
-        data: '난 자식이야'
+        type: 'PARENT_MESSAGE',
+        data: '사실 내가 부모네'
       }, 'https://www.minsoku.shop');
-      console.log('(자식) : 완료');
+      console.log('(부모) : 완료');
     } catch (error) {
-      console.error('(자식) : 실패:', error);
+      console.error('(부모) : 실패:', error);
     }
   };
 
   return (
     <div className={styles.page}>
-      iframe 페이지
+      여기가 부모페이지임
       <button onClick={sendMessage}>부모야</button>
       <div style={{ padding: '20px' }} />
       <iframe
