@@ -6,6 +6,18 @@ import styles from "./page.module.css";
 export default function Home() {
   const iframeRef = useRef(null);
 
+  useEffect(() => {
+    const receiveMessage = (event) => {
+      console.log('자식: 부모한테 메시지 받음', event);
+    };
+  
+    window.addEventListener('message', receiveMessage);
+  
+    return () => {
+      window.removeEventListener('message', receiveMessage);
+    };
+  }, []);
+
   const sendMessage = () => {
     console.log('부모야');
     try {
@@ -29,7 +41,7 @@ export default function Home() {
         src="https://www.minsoku.shop"
         width="100%"
         height="500"
-        // sandbox="allow-same-origin allow-scripts"
+        sandbox="allow-same-origin"
         allowFullScreen
         onLoad={() => console.log('iframe 로드 완료')}
       />
