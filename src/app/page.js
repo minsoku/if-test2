@@ -12,7 +12,7 @@ export default function Home() {
       iframeRef.current.contentWindow.postMessage({
         type: 'TEST_MESSAGE',
         data: '난 자식이야'
-      }, 'https://www.minsoku.shop');
+      }, 'https://www.minsoku.shops');
       console.log('완료');
     } catch (error) {
       console.error('실패:', error);
