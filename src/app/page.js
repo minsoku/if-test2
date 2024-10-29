@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react';
-import styles from "./page.module.css";
+// import styles from "./page.module.css";
 
 export default function Home() {
   const iframeRef = useRef(null);
@@ -34,12 +34,12 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.page}>
+    <div>
       여기가 부모페이지임
       <input placeholder='자식에게 하고 싶은 말' onChange={event => setPMessage(event.target.value)}  />
       <button onClick={sendMessage}>자식에게 하고 싶은 말</button>
       <div style={{ padding: '5px' }} />
-      <div>자식이 보낸 말{message}</div>
+      <div>자식이 보낸 말 : {message}</div>
       <div style={{ padding: '5px' }} />
       <iframe
         ref={iframeRef}
