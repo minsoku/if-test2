@@ -7,8 +7,12 @@ export default function Home() {
   const iframeRef = useRef(null);
 
   const sendMessage = () => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-      iframeRef.current.contentWindow.postMessage('부모한테 보냄', 'https://www.minsoku.shop');
+    console.log('부모야');
+    try {
+      window.parent.postMessage('난 자식이야', '*');
+      console.log('완료');
+    } catch (error) {
+      console.error('실패:', error);
     }
   };
 
@@ -22,6 +26,7 @@ export default function Home() {
         src="https://www.minsoku.shop"
         width="100%"
         height="500"
+        sandbox="allow-same-origin allow-scripts"
         allowFullScreen
         onLoad={() => console.log('iframe 로드 완료')}
       />
