@@ -41,7 +41,7 @@ export default function Home() {
         src="https://www.minsoku.shop"
         width="100%"
         height="500"
-        sandbox="allow-same-origin"
+        sandbox="allow-same-origin allow-script"
         allowFullScreen
         onLoad={() => console.log('iframe 로드 완료')}
       />
